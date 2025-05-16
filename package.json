@@ -2,7 +2,7 @@
   "name": "fullstackproject",
   "version": "1.0.0",
   "main": "index.js",
-"scripts": {
+  "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
     "lint": "turbo run lint"
@@ -16,6 +16,6 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "turbo": "^2.3.0"
+    "turbo": "^2.5.3"
   }
 }

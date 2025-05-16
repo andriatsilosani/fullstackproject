@@ -13,8 +13,8 @@ const SignInForm = () => {
             {!!state?.message && <p className="text-red-500 text-sm">{state.message}</p>}
 
             <div>
-                <Label defaultValue={state?.data.email} htmlFor="email">Email</Label>
-                <Input id="email" name="email" placeholder="andria@example.com" type="email"/>
+                <Label  defaultValue={state?.data.email} htmlFor="email">Email</Label>
+                <Input id="email" name="email" placeholder="andria@example.com" type="email" />
             </div>
             {!!state?.errors?.email && <p className="text-red-500 text-sm">{state.errors.email}</p>}
 
@@ -25,9 +25,9 @@ const SignInForm = () => {
             {!!state?.errors?.password && <p className="text-red-500 text-sm">{state.errors.password}</p>}
 
 
-            <SubmitButton>SignIn</SubmitButton>
+            <SubmitButton className="bg-slate-900 text-white">SignIn</SubmitButton>
         </form>
     )
 }
 
-export default SignInForm
+export default SignInForm 

@@ -8,6 +8,7 @@ import { LoginFormSchema } from "../zodSchemas/loginFormSchema";
 import { SignUpFormSchema } from "../zodSchemas/signUpFormSchema";
 import { print } from "graphql"
 import { revalidatePath } from "next/cache";
+import { createSession } from "../session";
 
 export async function signUp(state: SignUpFormState, formData: FormData):Promise<SignUpFormState> {
     const validatedFields = SignUpFormSchema.safeParse(Object.fromEntries(formData.entries()))
@@ -52,6 +53,15 @@ export async function signIn(state: SignUpFormState, formData: FormData):Promise
             message: "Invalid Credentials"
         }
     }
+
+    await createSession({
+        user: {
+            id: data.signIn.id,
+            name: data.signIn.name,
+            avatar: data.signIn.avatar,
+        },
+        accessToken: data.signIn.accessToken
+    })
 
     revalidatePath("/");
     redirect("/")

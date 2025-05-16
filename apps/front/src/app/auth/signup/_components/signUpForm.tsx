@@ -40,7 +40,7 @@ const SignUpForm = () => {
             )}
 
 
-            <SubmitButton>Sign Up</SubmitButton>
+            <SubmitButton className="bg-slate-900 text-white">Sign Up</SubmitButton>
         </form>
     )
 }
