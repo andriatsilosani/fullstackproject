@@ -4,7 +4,10 @@ import { AuthResolver } from './auth.resolver';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { jwtStrategy } from './strategies/jwt.strategies';
+import { JwtStrategy } from './strategies/jwt.strategies';
+import { GoogleStrategy } from './strategies/google.strategy';
+import { AuthController } from './auth.controller';
+
 
 @Module({
   imports: [
@@ -12,13 +15,20 @@ import { jwtStrategy } from './strategies/jwt.strategies';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>("JWT_SECRET"),
+        secret: configService.get<string>('JWT_SECRET'),
         signOptions: {
-          expiresIn: configService.get<string>("JWT_EXPIRES_IN")
-        }
-      })
-    })
+          expiresIn: configService.get<string>('JWT_EXPRIES_IN'),
+        },
+      }),
+    }),
   ],
-  providers: [AuthResolver, AuthService, PrismaService, jwtStrategy],
+  providers: [
+    AuthResolver,
+    AuthService,
+    PrismaService,
+    JwtStrategy,
+    GoogleStrategy,
+  ],
+  controllers: [AuthController],
 })
 export class AuthModule {}
